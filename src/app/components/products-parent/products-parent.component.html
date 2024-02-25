@@ -1,0 +1,15 @@
+<div class="container flex-column justify-content-center align-items-center">
+  <div>
+    <!-- //! recieve data from child using subscriping on the child event emiited (addchildEvent) and pass the data to parent function-->
+    <!-- //! sent data to child by pinding my value to his decorated as input seter function (filterByValue) -->
+    <div class="d-flex justify-content-between align-items-center">
+      <input
+        placeholder="Search For Produts By Product Name or Price bigger than"
+        type="text"
+        class="form-control mt-4 mb-2"
+        [(ngModel)]="filterValue"
+      />
+    </div>
+    <app-products [filterByPriceOrNameValue]="filterValue"></app-products>
+  </div>
+</div>

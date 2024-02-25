@@ -1,0 +1,68 @@
+<div class="container d-flex justify-content-around align-items-center">
+  <div class="row" style="display: flex; align-items: center">
+    <!-- !Call the seter to take the value and pass it to function will filter according to it -->
+    <!-- <input
+      placeholder="Search For Produts By Name"
+      type="text"
+      class="form-control mt-4"
+      [(ngModel)]="filterValue"
+    /> -->
+
+    <!-- !Call the seter to take the value and pass it to function will filter according to it -->
+    <select name="" id="" [(ngModel)]="filterGategory">
+      <option value="1">Men Wear</option>
+      <option value="2">jewelry</option>
+    </select>
+    <div class="col-2"></div>
+    <div class="col-10">
+      <div class="row">
+        @for(item of productsFiltered ; track item.id){
+
+        <div
+          class="col-3 m-1 card"
+          [appBorderRoundAndShadow]="appBorderRound"
+          defBorder="10px"
+        >
+          <!--//! -------------------------------------------------------------------- -->
+          <img [src]="item.img" class="img-fluid w-50 h-50 m-auto" />
+          <!-- //! pipe -->
+          <h4>{{ item.name | uppercase }}</h4>
+          <h4
+            [ngClass]="{
+              'text-danger': item.price > 100,
+              'text-info': item.price < 100
+            }"
+          >
+            <!-- //! pipe -->
+            Price:{{ item.price | currency : "EGP" : "code" }}
+          </h4>
+          <h4 [class.bg-warning]="item.quantity < 2">
+            Qty: {{ item.quantity }}
+          </h4>
+          <h4>
+            @switch(item.quantity){ @case (0){ Out Of Stock } @case (1){ Last
+            One Item } @case (2){ Last Two Items } @default { In Stock } }
+          </h4>
+          <div class="d-flex justify-content-evenly mb-2">
+            <button
+              class="btn btn-primary w-45"
+              (click)="addCartItem(item)"
+              [disabled]="!item.quantity"
+            >
+              Add To<i class="fa-solid fa-cart-shopping"></i>
+            </button>
+            <button
+              class="btn btn-info w-45"
+              [routerLink]="['/products', item.id]"
+              routerLinkActive="router-link-active"
+            >
+              Details
+              <i class="fa-solid fa-circle-info fa-lg" style="color: white"></i>
+            </button>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="container w-100">
+  <button class="btn btn-danger" (click)="goBackToProducts()">
+    Go Back To Products
+  </button>
+  <div class="row">
+    <div class="col-sm-3 m-auto">
+      <img [src]="product.img" class="img-fluid w-50 h-50 m-auto" />
+      <h4>{{ product.name | uppercase }}</h4>
+      <h4
+        [ngClass]="{
+          'text-danger': product.price > 100,
+          'text-info': product.price < 100
+        }"
+      >
+        Price:{{ product.price | currency : "EGP" : "code" }}
+      </h4>
+      <h4 [class.bg-warning]="product.quantity < 2">
+        Qty: {{ product.quantity }}
+      </h4>
+      <h4>
+        @switch(product.quantity){ @case (0){ Out Of Stock } @case (1){ Last One
+        product } @case (2){ Last Two products } @default { In Stock } }
+      </h4>
+      <div class="d-flex justify-content-evenly">
+        <button class="btn btn-primary w-45" [disabled]="!product.quantity">
+          <!-- <button
+        class="btn btn-primary w-45"
+        (click)="addToCard(product)"
+        [disabled]="!product.quantity"
+      > -->
+          Add To<i class="fa-solid fa-cart-shopping"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
